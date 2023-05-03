@@ -4,6 +4,7 @@ use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\nilaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ Auth::routes();
 Route::resource('mahasiswas', MahasiswaController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [MahasiswaController::class, 'search'])->name('search');
+// Route::get('/nilai/{Nim}', [MahasiswaController::class, 'nilai'])->name('nilai');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/mahasiswas/nilai/{mahasiswa}', [MahasiswaController::class, 'nilai']);

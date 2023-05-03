@@ -6,6 +6,8 @@ use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Kelas;
+use App\Models\MahasiswaMatkul;
+use App\Models\Matkul;
 
 class MahasiswaController extends Controller
 {
@@ -82,7 +84,6 @@ class MahasiswaController extends Controller
             'kelas' => 'required',
             'Jurusan' => 'required',
             'No_Handphone' => 'required',
-
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
         $mahasiswas = Mahasiswa::find($Nim);
@@ -114,5 +115,14 @@ class MahasiswaController extends Controller
         $keyword = $request->search;
         $mahasiswas = Mahasiswa::where('Nama', 'like', '%' . $keyword . '%')->paginate(5);
         return view('mahasiswas.index', compact('mahasiswas'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+    public function nilai($Nim)
+    {
+        //$Mahasiswa = Mahasiswa::find($nim);
+        $Mahasiswa = Mahasiswa::find($Nim);
+        $Matakuliah = Matkul::all();
+        //$MataKuliah = $Mahasiswa->MataKuliah()->get();
+        $Mahasiswa_Matakuliah = MahasiswaMatkul::where('mahasiswa_id','=',$Nim)->get();
+        return view('mahasiswas.nilai',['Mahasiswa' => $Mahasiswa],['Mahasiswa_Matakuliah' => $Mahasiswa_Matakuliah],['Matakuliah' => $Matakuliah], compact('Mahasiswa_Matakuliah'));
     }
 };

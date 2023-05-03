@@ -38,7 +38,31 @@ class MataKuliahSeeder extends Seeder
             'sks' => 3,
             'jam' => 6,
             'semester' => 4
-        ]
+        ],
+        [
+            'nama_matkul' => 'Kewarganegaraan',
+            'sks' => 3,
+            'jam' => 4,
+            'semester' => 4
+        ],
+        [
+            'nama_matkul' => 'Jaringan Komputer',
+            'sks' => 3,
+            'jam' => 2,
+            'semester' => 4
+        ],
+        [
+            'nama_matkul' => 'Praktikum Jaringan Komputer',
+            'sks' => 3,
+            'jam' => 4,
+            'semester' => 4
+        ],
+        [
+            'nama_matkul' => 'Proyek',
+            'sks' => 3,
+            'jam' => 4,
+            'semester' => 4
+        ],
     ];
         DB::table('matakuliah')->insert($matkul);
     }
